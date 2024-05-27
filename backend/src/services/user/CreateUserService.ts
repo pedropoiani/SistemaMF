@@ -1,15 +1,22 @@
-interface UserRequest{
-    name: string;
-    email: string;
-    password: string;
-  }
+import { IUser } from "../../interfaces/IUser";
+import prismaClient from '../../prisma';
   
   class CreateUserService{
-    async execute({name, email, password}: UserRequest){
-  
-      console.log(name);
-  
-      return { name: name }
+    async execute({ name, email, password }: IUser) {
+
+      try {
+        await prismaClient.user.create({
+          data: {
+            name,
+            email,
+            password
+          }
+        })
+      } catch(error) {
+        return { Error: error };
+      }
+      
+      return { Status: "Client successfully created" }
     }
   }
   
