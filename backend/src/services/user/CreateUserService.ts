@@ -16,7 +16,7 @@ import prismaClient from '../../prisma';
         return { Error: error };
       }
       
-      return { Status: "Client successfully created" }
+      return { Status: "Cliente Criado com Sucesso!" }
     }
   }
   
